@@ -4,8 +4,14 @@ from . import views
 
 # el requests  llega desde el router aca y cada ruta gatilla un funcion 
 urlpatterns = [
-    path("productos/",views.lista_productos, name="lista_productos"),
+    path("",views.index, name="index"),
     path("crear/",views.crear_producto, name="crear_producto"),
+    path("productos/",views.lista_productos, name="lista_productos"),
+    path("actualizar/<int:id>/",views.actualizar_producto, name="actualizar_producto"),
+    path("borrar/<int:id>/",views.borrar_producto, name="borrar_producto"),
+    path("lista_premium/",views.lista_productos_premium, name="lista_productos_premium"),
+    path("crear_premium/",views.crear_premium, name="crear_premium"),
+
     
 
 ]

@@ -3,14 +3,14 @@
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="display-5">Gestión de Productos</h1>
+    <h1 class="display-5">Gestión de Productos premium</h1>
     <a class="btn btn-dark shadow-sm" href="{% url 'crear_producto' %}">
-        <i class="fas fa-plus me-2"></i>Crear nuevo producto
+        <i class="fas fa-plus me-2"></i>Crear nuevo producto premium
     </a>
 </div>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    {% for producto in productos %}
+    {% for producto in premium %}
     <div class="col">
         <div class="card h-100 shadow-sm border-0">
             <div style="height: 200px; overflow: hidden; background-color: #f8f9fa;" class="rounded-top">
