@@ -16,6 +16,7 @@ def crear_producto(request):
     #si el usuario envio el formulario 
     if request.method == "POST":
         form = ProductoForms(request.POST, request.FILES) #request.POST (SON TODOS LOS DATOS DEL FORMULARIO)
+        print(request.FILES)
 
         if form.is_valid():
             form.save()
@@ -29,7 +30,10 @@ def crear_producto(request):
 # r (lectura de datos)   
 
 def lista_productos(request):
+    print(request)
     productos = Producto.objects.all()
+    
+
     return render(request, "productos.html",{"productos":productos})
 
 
@@ -41,14 +45,16 @@ def actualizar_producto(request, id):
 
     if request.method == "POST":
         form = ProductoForms(request.POST,request.FILES, instance=producto)
+        
         if form.is_valid():
             form.save()
             messages.success(request,"producto actualizado correctamente")
             return redirect("lista_productos")
     else:
         form = ProductoForms(instance=producto)
+        
 
-    return render(request, "actulizar_productos.html",{"form":form})
+    return render(request, "actualizar_productos.html",{"form":form})
 
 
 
@@ -84,13 +90,30 @@ def lista_productos_premium(request):
     productosPremium = ProductoPremium.objects.all()
     return render(request, "premium/lista_premium.html", {"premium": productosPremium})
 
+def actualizar_premium(request, id):
+     
+    premium = ProductoPremium.objects.get(id=id)
 
-def actualizar_premium(requuest):
-    pass
+    if request.method == "POST":
+        form = ProductoPremiumForms(request.POST,request.FILES, instance=premium)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request,"producto premium actualizado correctamente")
+            return redirect("lista_productos")
+    else:
+        form = ProductoPremiumForms(instance=premium)
+       
+
+    return render(request, "actualizar_productos_premium.html",{"form":form})
+  
 
 
 def borrar_premium(request):
-    pass
+    premium = ProductoPremium.objects.get(id=id)
+    premium.delete()
+    messages.success(request,"producto premium borrado correctamente")
+    return redirect("lista_productos_premium")
 
 
 
